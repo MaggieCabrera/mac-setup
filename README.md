@@ -6,7 +6,7 @@
 # Setting up your machine
 
 1. Login to the App Store in the background (before mac apps get installed)
-2. Run `bash <(curl -s https://raw.githubusercontent.com/cpapazoglou/mac-setup/main/bootstrap.sh)`
+2. Run `bash <(curl -s https://raw.githubusercontent.com/MaggieCabrera/mac-setup/main/bootstrap.sh)`
 3. Log out and back in to apply OSX changes (can be done at the end)
 4. Restore the list of Manual Items (below)
 5. Run `sh repos/clone.sh` to clone all repos

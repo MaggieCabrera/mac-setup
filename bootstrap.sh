@@ -6,7 +6,7 @@ set -x
 set -e
 
 echo ">> Download latest code from $branch to $zip_file"
-curl -o $zip_file -Li https://github.com/cpapazoglou/mac-setup/archive/$branch.zip
+curl -o $zip_file -Li https://github.com/MaggieCabrera/mac-setup/archive/$branch.zip
 
 echo ">> Extract $zip_file to $extract_dir"
 set +e
