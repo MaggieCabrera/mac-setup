@@ -18,5 +18,16 @@ brew analytics off
 echo ">> Remove any apps not on the Brewfile"
 brew bundle cleanup --file=brew/Brewfile --force
 
+echo ">> Checking for apps installed outside of brew"
+skip_casks=""
+for cask in $(brew bundle list --cask --file=brew/Brewfile); do
+  brew list --cask "$cask" >/dev/null 2>&1 && continue
+  app=$(brew info --cask "$cask" | sed -n 's/ (App)$//p' | head -1)
+  if [ -n "$app" ] && [ -d "/Applications/$app" ]; then
+    echo ">> Skipping $cask, /Applications/$app already exists"
+    skip_casks="$skip_casks $cask"
+  fi
+done
+
 echo ">> Installing brew and cask apps"
-brew bundle --file=brew/Brewfile
+HOMEBREW_BUNDLE_CASK_SKIP="$skip_casks" brew bundle --file=brew/Brewfile

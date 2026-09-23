@@ -1,22 +1,23 @@
-zip_file=~/Downloads/mac-setup.zip
-extract_dir=~/Downloads/mac-setup
-branch=main
+repo_url=https://github.com/MaggieCabrera/mac-setup.git
+repo_dir=~/a8c/repos/mac-setup
 
-set -x
 set -e
 
-echo ">> Download latest code from $branch to $zip_file"
-curl -o $zip_file -Li https://github.com/MaggieCabrera/mac-setup/archive/$branch.zip
+# git comes with the command line tools
+if ! xcode-select -p >/dev/null 2>&1; then
+  echo ">> Installing command line tools, click Install in the dialog"
+  xcode-select --install
+  until xcode-select -p >/dev/null 2>&1; do sleep 5; done
+fi
 
-echo ">> Extract $zip_file to $extract_dir"
-set +e
-unzip $zip_file -d $extract_dir
-set -e
+if [ -d "$repo_dir/.git" ]; then
+  echo ">> Updating $repo_dir"
+  git -C "$repo_dir" pull
+else
+  echo ">> Cloning $repo_url to $repo_dir"
+  mkdir -p "$(dirname "$repo_dir")"
+  git clone "$repo_url" "$repo_dir"
+fi
 
-echo ">> Open $extract_dir/mac-setup-main"
-cd "$extract_dir/mac-setup-main"
-echo ">> Run install"
+cd "$repo_dir"
 sh install.sh
-
-echo ">> Remove $extract_dir and $zip_file"
-rm -rf $extract_dir $zip_file
