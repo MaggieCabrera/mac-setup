@@ -23,6 +23,10 @@ cask "alfred"
 cask "firefox"
 cask "google-chrome"
 cask "iterm2"
+cask "linear"
+cask "obsidian"
+cask "signal"
+cask "telegram"
 cask "visual-studio-code"
 cask "vlc"
 cask "zoom"
@@ -30,3 +34,10 @@ cask "setapp"
 
 mas "Xcode", id: 497799835
 mas "Slack", id: 803453959
+mas "The Unarchiver", id: 425424353
+mas "WhatsApp", id: 310633997
+
+vscode "nopjmp.fairyfloss"
+vscode "dbaeumer.vscode-eslint"
+vscode "bmewburn.vscode-intelephense-client"
+vscode "ms-playwright.playwright"

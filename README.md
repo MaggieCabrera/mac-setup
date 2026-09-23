@@ -33,9 +33,10 @@ cd ~/a8c/repos/mac-setup && sh install.sh
 1. Installs the command line tools (`xcode/install.sh`)
 2. Installs Homebrew and everything in `brew/Brewfile` (`brew/install.sh`)
 3. Links your dotfiles, installs oh-my-zsh and installs the latest node with nvm (`shell/install.sh`)
-4. Points iTerm2 at the settings in this repo (`iterm/install.sh`)
-5. Applies macOS settings: dock, trackpad, keyboard, Finder (`osx/install.sh`)
-6. Logs you in to GitHub and checks that 1Password can sign your commits (`github/install.sh`)
+4. Links your VS Code settings (`vscode/install.sh`)
+5. Points iTerm2 at the settings in this repo (`iterm/install.sh`)
+6. Applies macOS settings: dock, trackpad, keyboard, Finder (`osx/install.sh`)
+7. Logs you in to GitHub and checks that 1Password can sign your commits (`github/install.sh`)
 
 ## While it runs
 
@@ -70,6 +71,12 @@ Do these by hand:
 Existing files are moved to `~/.<name>.backup` before linking. Because they're symlinks, editing `~/.zshrc` edits the file in the repo, so commit your changes.
 
 This repo is public, so never commit secrets (API keys, tokens) or private hostnames to these files.
+
+# VS Code
+
+`vscode/install.sh` links `vscode/settings.json` (and `keybindings.json` or `snippets/`, if you add them) into `~/Library/Application Support/Code/User`. Extensions are listed in `brew/Brewfile` as `vscode "publisher.extension"` lines and installed by `brew bundle`.
+
+Don't turn on VS Code Settings Sync as well; it would overwrite the linked files.
 
 # iTerm2
 

@@ -15,9 +15,6 @@ fi
 echo ">> Switching off analytics"
 brew analytics off
 
-echo ">> Remove any apps not on the Brewfile"
-brew bundle cleanup --file=brew/Brewfile --force
-
 echo ">> Checking for apps installed outside of brew"
 skip_casks=""
 for cask in $(brew bundle list --cask --file=brew/Brewfile); do
@@ -28,6 +25,9 @@ for cask in $(brew bundle list --cask --file=brew/Brewfile); do
     skip_casks="$skip_casks $cask"
   fi
 done
+
+# brew bundle needs the code command to install VS Code extensions
+export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 
 echo ">> Installing brew and cask apps"
 HOMEBREW_BUNDLE_CASK_SKIP="$skip_casks" brew bundle --file=brew/Brewfile
