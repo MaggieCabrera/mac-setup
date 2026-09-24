@@ -52,9 +52,10 @@ Do these by hand:
 
 1. **Rename the Mac** (optional): System Settings → General → About → Name. The setup doesn't depend on the name, so do this whenever you like.
 2. **Log out and back in** to apply the macOS settings.
-3. **SSH keys** (only for servers outside 1Password): copy `~/.ssh/config` and any keys you need from the old machine, then run `chmod 600 ~/.ssh/id_*`. Skip the AutoProxxy files (`a8c-*.config`, `autoproxxy*`); AutoProxxy regenerates them. Not needed for GitHub.
-4. **iStat Menus:** install it (Setapp), restore the backup, then hide the macOS time and battery icons.
-5. **Repos:** run `sh repos/clone.sh` to clone your repos.
+3. **Docker:** open **Docker** from Applications once, accept the license agreement and enter your password (see [Docker](#docker)).
+4. **SSH keys** (only for servers outside 1Password): copy `~/.ssh/config` and any keys you need from the old machine, then run `chmod 600 ~/.ssh/id_*`. Skip the AutoProxxy files (`a8c-*.config`, `autoproxxy*`); AutoProxxy regenerates them. Not needed for GitHub.
+5. **iStat Menus:** install it (Setapp), restore the backup, then hide the macOS time and battery icons.
+6. **Repos:** run `sh repos/clone.sh` to clone your repos.
 
 # Dotfiles
 
@@ -113,15 +114,9 @@ brew services start php     # start php-fpm now and at login
 
 `php.ini` and `php-fpm.ini` are in `/opt/homebrew/etc/php/<version>/`.
 
-## Docker plugins
+## Docker
 
-For Docker to find the Homebrew `buildx` and `compose` plugins, add this to `~/.docker/config.json`:
-
-```json
-"cliPluginsExtraDirs": [
-    "/opt/homebrew/lib/docker/cli-plugins"
-]
-```
+Docker Desktop is installed with its own `docker` and `docker compose`. The first time, open **Docker** from Applications, accept the license agreement and enter your password when it asks to finish setting up. After that it starts with your Mac and `docker` works in the terminal.
 
 ## Python
 
